@@ -25,7 +25,7 @@ browser.runtime.onInstalled.addListener(async ({reason, temporary }) => {
 browser.runtime.onMessage.addListener(request => {
     switch(request.message) {
         case "chooseFile":
-            importFromFile();
+            saveUploadedTodos(request.payload);
             break;
         case "exportToFile":
             fetchLocalTodos().then(exportToFile);
@@ -52,27 +52,9 @@ function saveTodoStrings(texts) {
     }
 }
 
-function importFromFile() {
-    var fileChooser = document.createElement('input');
-    fileChooser.type = 'file';
-
-    fileChooser.addEventListener('change', function () {
-        var file = fileChooser.files[0];
-        var reader = new FileReader();
-        reader.onload = function(e){
-            let text = e.srcElement.result || "";
-            let texts = text.split("\n");
-            saveTodoStrings(texts);
-
-        };
-        reader.readAsText(file);
-        form.reset();
-    });
-
-    /* Wrap it in a form for resetting */
-    var form = document.createElement('form');
-    form.appendChild(fileChooser);
-    fileChooser.click();
+function saveUploadedTodos(text) {
+    let texts = text.split("\n");
+    saveTodoStrings(texts);
 }
 
 function exportToFile(texts) {

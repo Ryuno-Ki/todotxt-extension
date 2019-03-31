@@ -1,3 +1,4 @@
+'use strict';
 // basic syntax highlighting script for todo.txt attributes
 const reDue          = /due:(\d{4}-\d{2}-\d{2})/,
     reKeyVal       = /([a-zA-Z]+:[a-zA-Z0-9\-]+)/g,
@@ -285,7 +286,7 @@ function setEventListeners() {
 }
 
 function importFromFile() {
-    browser.runtime.sendMessage({message: "chooseFile"});
+    browser.sidebarAction.open();
 }
 
 function parseImportFile(e) {
@@ -652,6 +653,7 @@ function dateToString(date) {
 }
 
 function performSyntaxHighlighting() {
+    var parsed;
     var todoElements = document.querySelectorAll("#todolist li .text");
     for (var i = 0; i < todoElements.length; ++i) {
         var str = todoElements[i].innerHTML.trim();

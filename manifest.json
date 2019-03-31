@@ -21,14 +21,19 @@
     },
 
     "browser_action": {
-      "default_icon": "assets/icons/check_box_black_48dp.png",
       "theme_icons": [{
           "light": "assets/icons/check_box_white_48dp.png",
           "dark": "assets/icons/check_box_black_48dp.png",
           "size": 48
       }],
       "default_title": "todotxt",
+      "default_icon": "assets/icons/check_box_black_48dp.png",
       "default_popup": "popup/todolist.html"
+    },
+    "sidebar_action": {
+      "default_title": "todotxt",
+      "default_icon": "assets/icons/check_box_black_48dp.png",
+      "default_panel": "sidebar/sidebar.html"
     },
 
     "commands": {

@@ -57,5 +57,5 @@ function onFileLoaded (text) {
  * @params {Error} reason - The reason something happened.
  */
 function onError (reason) {
-    console.error('Problem', reason);
+    console.error('Problem' + reason);
 }
